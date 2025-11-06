@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "e750b5f9-38f6-481d-9b03-4b056c324be8",
+		"name": "GoRest Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29301265"
+	},
+	"item": [
+		{
+			"name": "Create a User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e6759f03d7ba8e3b287cdcd876498aa0e8bce557d7c05b9c1ceeefd5f655a0c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"Tenali Ramakrishna\", \r\n\"gender\":\"male\", \r\n\"email\":\"tenali.ramakrishna@ks.com\", \r\n\"status\":\"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/public/v2/users",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch List of Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e6759f03d7ba8e3b287cdcd876498aa0e8bce557d7c05b9c1ceeefd5f655a0c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/public/v2/users",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e6759f03d7ba8e3b287cdcd876498aa0e8bce557d7c05b9c1ceeefd5f655a0c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/public/v2/users/2778",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"2778"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit A User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "e6759f03d7ba8e3b287cdcd876498aa0e8bce557d7c05b9c1ceeefd5f655a0c5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"Allasani Peddana\", \r\n\"email\":\"allasani.peddana@15ce.com\", \r\n\"status\":\"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/2778",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"2778"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"requests": {},
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {\r",
+					"  pm.response.to.have.status(200);\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Response contains userId\", function () {\r",
+					"  var jsonData = pm.response.json();\r",
+					"  pm.expect(jsonData).to.have.property(\"userId\");\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://gorest.co.in/"
+		}
+	]
+}
