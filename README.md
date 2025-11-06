@@ -1,5 +1,5 @@
-🧪 API Automation Project
-📘 Overview
+Personal API Automation Project
+#Overview
 
 This project is designed for automated testing of APIs using modern test automation frameworks and best practices.
 It helps esure that APIs function correctly, return expected responses, handle errors gracefully, and maintain reliability across deployments.
